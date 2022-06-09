@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import com.example.lsc.method.*;
 import com.example.lsc.pojo.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -112,7 +113,7 @@ public class index {
         session.invalidate();
         response.sendRedirect("/index/login");
     }
-    @RequestMapping("/error")
+    @RequestMapping("/error/main")
     public String error(){
         return "error";
     }

@@ -15,6 +15,24 @@
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/uigg.js"></script>
     <script src="/static/js/admin.js"></script>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+      "model": {
+        jsonPath: "https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json",
+        "scale": 1
+      },
+      "display": {
+        "position": "left",
+        "width": 100,
+        "height": 160,
+        "hOffset": 0,
+        "vOffset": -20
+      },
+      "react": {
+        "opacityDefault": 0.9,
+        "opacityOnHover": 0.2
+      }
+    });</script>
   </head>
   <body>
   <section class="admin anime-fade-in flex flex-column">
