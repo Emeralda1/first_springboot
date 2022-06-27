@@ -192,14 +192,14 @@ public class topic_create_m implements Topic_create {
     }
 
     @Override
-    public void dtopic(int tid) {
+    public void dtopic(String tid) {
         QueryWrapper<Topic> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("tid",tid);
         topicMapper.delete(queryWrapper);
     }
 
     @Override
-    public void dreply(int rid) {
+    public void dreply(String rid) {
         QueryWrapper<Reply> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("rid",rid);
         replyMapper.delete(queryWrapper);
@@ -213,5 +213,23 @@ public class topic_create_m implements Topic_create {
         UpdateWrapper<Users> updateWrapper=new UpdateWrapper<>();
         updateWrapper.eq("username",uname).set("exp",exp+e);
         usersMapper.update(null,updateWrapper);
+    }
+
+    @Override
+    public List<topic> search(String title) {
+        QueryWrapper<Topic> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("tid", "title", "content", "t_date", "submitter", "cate").like("title",title);
+        List<Topic> ls=topicMapper.selectList(queryWrapper);
+        List<topic> fls=new ArrayList<>();
+        if (ls.size()>0){
+            for (Topic t:ls){
+                topic to=new topic();
+                p_topic=inittopic(t);
+                to.setTid(p_topic.getTid());to.setContent(p_topic.getContent());to.setCate(p_topic.getCate());
+                to.setU(p_topic.getU());to.setTitle(p_topic.getTitle());to.setDate(p_topic.getDate());
+                fls.add(to);
+            }
+        }
+        return fls;
     }
 }

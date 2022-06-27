@@ -30,12 +30,13 @@ public class exp {
     }
     @Around("pointcut1()")
     public String addexp1(ProceedingJoinPoint point) throws Throwable {
+        System.out.println("exp");
+        point.proceed();
         Object[] args=point.getArgs();
         HttpSession session=(HttpSession)args[1];
         topic t=(topic)args[0];
         user u=(user)session.getAttribute("user");
         tc.exp(u.getUsername(),30);
-        point.proceed();
         return "redirect:/home?page=1&cate="+ URLEncoder.encode((t.getCate()),"UTF-8");
     }
     @Around("pointcut2()")

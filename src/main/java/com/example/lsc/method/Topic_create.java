@@ -21,7 +21,8 @@ public interface Topic_create {
     public void newreply(reply r);
     public List<topic> mytopic(String username);
     public List<reply> myreply(String username);
-    public void dtopic(int tid);
-    public void dreply(int rid);
+    public void dtopic(String tid);
+    public void dreply(String rid);
     public void exp(String uname,int e);
+    public List<topic> search(String title);
 }

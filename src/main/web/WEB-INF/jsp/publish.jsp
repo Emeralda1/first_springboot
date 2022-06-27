@@ -36,9 +36,9 @@
     });</script>
     <script>
         $(document).ready(function () {
-            $("#submit").click(function () {
-                alert("经验值加30")
-                $("#publishform").submit();
+            $("#su").click(function () {
+                alert("经验值加30");
+                $("#publish").submit();
             });
         });
     </script>
@@ -69,7 +69,7 @@
     </section>
     <section class="subject">
         <section class="sider">
-            <div class="sider-search"><input type="text"><button class="ico ico-search"></button></div>
+            <div class="sider-search"><form action="/search" method="get"><input type="text" name="title"><button class="ico ico-search"></button></form></div>
             <h6>basic</h6>
             <div class="sider-list">
                 <li><a><i class="ico ico-home"></i>首页</a>
@@ -81,7 +81,7 @@
                 </li>
                 <li><a><i class="ico ico-app"></i>我的话题</a>
                     <div class="sider-group anime-fade-in">
-                        <a href="/mytopic?cate=">我发表的</a>
+                        <a href="/mytopic">我发表的</a>
                         <a href="/myreply">我回复的</a>
                     </div>
                 </li>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="item">
                     <section class="form">
-                        <form action="/setnewtopic" method="post" id="publishform">
+                        <form action="/setnewtopic" method="post" id="publish">
                             <li><span>标题</span>
                                 <input class="med" type="text" required maxlength="20" name="title">
                                 <cite></cite>
@@ -110,7 +110,7 @@
                                 <textarea class="big" required maxlength="1000" name="content"></textarea>
                                 <cite></cite>
                             </li>
-                            <li class="resolve"><a href="/index"><button class="btn" type="button">取消</button></a><a href=""><button class="btn" id="submit" type="button">发表</button></a></li>
+                            <li class="resolve"><a href="/index"><button class="btn" type="button">取消</button></a><button class="btn" id="su" type="button">发表</button></li>
                         </form>
                     </section>
                 </div>

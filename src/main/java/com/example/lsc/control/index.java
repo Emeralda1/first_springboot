@@ -106,7 +106,9 @@ public class index {
         return "publish";
     }
     @RequestMapping("/index/profile")
-    public String profile(){
+    public String profile(HttpSession session){
+        user=b.getprofile(user);
+        session.setAttribute("user",user);
         return "profile";
     }
     @RequestMapping("/index/editshowname")
@@ -144,6 +146,7 @@ public class index {
     @RequestMapping("/setnewtopic")
     public String publish(topic t,HttpSession session,Model model) throws UnsupportedEncodingException {
         user=(user)session.getAttribute("user");
+        System.out.println("正在发表");
         topic.setTitle(t.getTitle());
         topic.setContent(t.getContent());
         topic.setCate(t.getCate());
@@ -176,13 +179,19 @@ public class index {
         model.addAttribute("replylist",ls);
         return "myreply";
     }
+    @RequestMapping("/search")
+    public String search(String title,Model model){
+        List<topic> ls=tc.search(title);
+        model.addAttribute("topiclist",ls);
+        return "search";
+    }
     @RequestMapping("deletetopic")
-    public String deletetopic(int tid){
+    public String deletetopic(String tid){
         tc.dtopic(tid);
         return "redirect:/mytopic";
     }
     @RequestMapping("deletereply")
-    public String deletereply(int rid){
+    public String deletereply(String rid){
         tc.dreply(rid);
         return "redirect:/myreply";
     }

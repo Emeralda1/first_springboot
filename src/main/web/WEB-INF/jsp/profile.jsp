@@ -66,7 +66,7 @@
     </section>
     <section class="subject">
         <section class="sider">
-            <div class="sider-search"><input type="text"><button class="ico ico-search"></button></div>
+            <div class="sider-search"><form action="/search" method="get"><input type="text" name="title"><button class="ico ico-search"></button></form></div>
             <h6>basic</h6>
             <div class="sider-list">
                 <li><a><i class="ico ico-home"></i>首页</a>

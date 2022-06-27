@@ -89,7 +89,7 @@
                         <a href="/home?page=1&cate=娱乐">娱乐</a>
                     </div>
                 </li>
-                <li><a  class="active"><i class="ico ico-app" ></i>我的话题</a>
+                <li><a><i class="ico ico-app" ></i>我的话题</a>
                     <div class="sider-group anime-fade-in">
                         <a href="/mytopic?cate=">我发表的</a>
                         <a href="/myreply">我回复的</a>
@@ -102,27 +102,29 @@
             </div>
         </section>
         <section class="clause">
-            <div class="title"><h4>我的话题</h4></div>
+            <div class="title"><h4>Search</h4></div>
             <div class="contant">
                 <div class="title flex">
-                    <h5 class="float-left">我回复的</h5>
+                    <h5 class="float-left">总共有${topiclist.size()}条结果</h5>
                     <cite></cite><u></u>
                 </div>
                 <div class="item">
                     <div class="list">
-                        <c:forEach items="${replylist}" var="reply">
+                        <c:forEach items="${topiclist}" var="topic">
                             <li class="center">
+                                <img src="${topic.u.photopath}" class="float-left" style="margin-top:6px;margin-right:30px;width: 100px;height: 100px;border-radius: 40px">
                                 <div class="list-cont">
-                                    <a href="/topic?tid=${reply.tip}">
-                                        <h6>${reply.title}</h6>
-                                        <p>${reply.content}</p>
+                                    <a href="/topic?tid=${topic.tid}">
+                                        <h6>${topic.title}</h6>
+                                        <p>${topic.content}</p>
                                         <div class="list-info">
-                                            <span class="float-right"><i class="ico ico-time"></i>${reply.date}</span>
+                                            <span>发表者：${topic.u.showname}</span>
+                                            <span class="float-right"><i class="ico ico-time"></i>${topic.date}</span>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="list-control">
-                                    <a href="/deletereply?rid=${reply.rid}"><i class="ico ico-delete co-red"></i></a>
+                                    <a href="/deletetopic?tid=${topic.tid}"><i class="ico ico-delete co-red"></i></a>
                                 </div>
                             </li>
 

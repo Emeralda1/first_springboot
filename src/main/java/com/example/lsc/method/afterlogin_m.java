@@ -30,7 +30,7 @@ public class afterlogin_m implements afterlogin{
         Map<String, Object> resultMap = new HashMap<String, Object>();
         if (null == file) {
             resultMap.put("result", false);
-            resultMap.put("msg", "获取上传文件失败,请检查file上传组件的名称是否正确");
+            resultMap.put("msg", "获取上传文件失败");
         } else if (file.isEmpty()) {
             resultMap.put("result", false);
             resultMap.put("msg", "没有选择文件");
@@ -53,6 +53,7 @@ public class afterlogin_m implements afterlogin{
                 resultMap.put("msg", "文件上传发生异常");
             }
         }
+        System.out.println(resultMap.get("msg"));
         return resultMap;
     }
 

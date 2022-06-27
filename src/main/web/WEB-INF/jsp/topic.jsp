@@ -71,7 +71,7 @@
     </section>
     <section class="subject">
         <section class="sider">
-            <div class="sider-search"><input type="text"><button class="ico ico-search"></button></div>
+            <div class="sider-search"><form action="/search" method="get"><input type="text" name="title"><button class="ico ico-search"></button></form></div>
             <h6>basic</h6>
             <div class="sider-list">
                 <li><a><i class="ico ico-home"></i>首页</a>
@@ -118,7 +118,7 @@
                         </li>
                         <c:forEach items="${topic.replies}" var="reply">
                                 <li class="center">
-                                    <em><img src="${reply.u.photopath}"></em>
+                                    <img src="${reply.u.photopath}" class="float-left" style="margin-top:6px;margin-right:30px;width: 100px;height: 100px;border-radius: 40px">
                                     <div class="list-cont">
                                         <p>${reply.content}</p>
                                         <div class="list-info">
