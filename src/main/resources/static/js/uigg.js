@@ -6,6 +6,7 @@
  * license: MIT
  */
 
+
 //----------------------------------------------------------------------------------preset
 $(function(){
     $('[hide]').hide();
@@ -713,9 +714,9 @@ $(function(){
             $('page ul a').eq(pageVal - 1).addClass('active').show().prev().show().prev().show().end().next().show().next().show().next().show();
         };
         $('page span').html(pageVal + '/' + pageMax);
-        window.open("http://localhost:8080/home?page="+pageVal+"&cate="+cate)
+        window.open("http://localhost:8080/home?page="+pageVal+"&cate="+cate,"_self")
     };
-    page();
+    // page();
     $('page .ico-alone-side-right').click(function(){
         $('page').attr('value',pageMax);
         page();
