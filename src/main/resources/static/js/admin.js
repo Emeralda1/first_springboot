@@ -16,25 +16,6 @@ $(function(){
             $(this).next().show();
         };
     });
-    $("#editusername").click(function (){
-        var showname=$("input[name=showname]").val();
-        var jsonob={'showname':showname};
-        if(showname!=''){
-            $.ajax({
-                type: "POST",
-                url: "/index/editshowname",
-                dataType: 'json',
-                contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-                data:jsonob,
-                success: function (data) {
-                    $('.ico-circular-user').click();
-                }
-            })
-        }
-        else {
-            alert("昵称不能为空");
-        }
-    })
 
 });
 });

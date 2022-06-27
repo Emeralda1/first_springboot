@@ -1,7 +1,7 @@
-package com.example.lsc.dao.mapper;
+package com.example.lsc.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.lsc.dao.entity.Users;
+import com.example.lsc.mybatis.entity.Users;
 import org.springframework.stereotype.Service;
 
 @Service

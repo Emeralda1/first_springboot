@@ -1,3 +1,4 @@
+var check=true
 function signupcheck(){
     var uname=$("input[name=username]").val();
     var pwd=$("input[name=password]").val();
@@ -9,7 +10,12 @@ function signupcheck(){
         nullcheck=false;
         alert("请填写完整");
     }
-    if (pwd==repwd&&nullcheck) {
+    else nullcheck=true;
+    if (pwd!=repwd) {$("input[name=repassword]").css('border-color','#ff6928');
+        $("input[name=repassword]").parent().prev().find("span").eq(0).after
+        ("<span className=\"text\" style=\"font-size: 12px\">两次密码输入不一致</span>");
+    }
+    if (pwd==repwd&&nullcheck&&check) {
         var user = {"username": uname, "password": pwd,"email": email, "showname": showname}
         $.ajax({
             type: "POST",
@@ -33,17 +39,13 @@ function signupcheck(){
                     $("input[name=username]").parent().prev().find("span").eq(0).after
                     ("<span className=\"text\" style=\"font-size: 12px\">此用户名已被注册</span>");
                 }
-                if (arr[1]=='flase'){
+                if (arr[1]=='false'){
                     $("input[name=email]").css('border-color','#ff6928');
                     $("input[name=email]").parent().prev().find("span").eq(0).after
                     ("<span className=\"text\" style=\"font-size: 12px\">此邮箱已被注册</span>");
                 }
             }
         })
-    }
-    else if (nullcheck) {$("input[name=repassword]").css('border-color','#ff6928');
-        $("input[name=repassword]").parent().prev().find("span").eq(0).after
-        ("<span className=\"text\" style=\"font-size: 12px\">两次密码输入不一致</span>");
     }
 }
 $(document).ready(function (){
@@ -66,11 +68,14 @@ $(document).ready(function (){
             $("input[name=email]").css('border-color','#ff6928');
             $("input[name=email]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">请填写邮箱地址</span>");
+            check=false
         }else if(!myreg.test(email)){
             $("input[name=email]").css('border-color','#ff6928');
             $("input[name=email]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">请输入有效的邮箱地址</span>");
+            check=false
         }
+
     });
     $("input[name=showname]").focus(function(){
         $(this).css('border-color','');
@@ -82,6 +87,7 @@ $(document).ready(function (){
             $("input[name=showname]").css('border-color','#ff6928');
             $("input[name=showname]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">昵称不能为空</span>");
+            check=false
         }
     });
     $("input[name=username]").focus(function(){
@@ -95,6 +101,7 @@ $(document).ready(function (){
             $("input[name=username]").css('border-color','#ff6928');
             $("input[name=username]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">用户名不合法</span>");
+            check=false
         }
     });
     $("input[name=password]").focus(function(){
@@ -108,16 +115,19 @@ $(document).ready(function (){
             $("input[name=password]").css('border-color','#ff6928');
             $("input[name=password]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">密码必须包含字母和数字</span>");
+            check=false
         }
         else if (password.length<=8){
             $("input[name=password]").css('border-color','#ff6928');
             $("input[name=password]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">密码过短</span>");
+            check=false
         }
         else if (password.length>=16){
             $("input[name=password]").css('border-color','#ff6928');
             $("input[name=password]").parent().prev().find("span").eq(0).after
             ("<span className=\"text\" style=\"font-size: 12px\">密码过长</span>");
+            check=false
         }
     });
 })

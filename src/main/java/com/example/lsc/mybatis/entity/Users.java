@@ -1,8 +1,10 @@
-package com.example.lsc.dao.entity;
+package com.example.lsc.mybatis.entity;
 
-import com.example.lsc.pojo.user;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
+
 @Data
 @Component("users")
 public class Users {
@@ -10,6 +12,7 @@ public class Users {
     private String password;
     private String email;
     private String showname;
-    private String signdate;
+    private Date signdate;
     private String photopath;
+    private int exp;
 }

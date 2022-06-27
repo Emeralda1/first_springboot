@@ -1,10 +1,9 @@
 package com.example.lsc.method;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.example.lsc.dao.entity.Users;
-import com.example.lsc.dao.mapper.UsersMapper;
+import com.example.lsc.mybatis.entity.Users;
+import com.example.lsc.mybatis.mapper.UsersMapper;
 import com.example.lsc.pojo.user;
-import org.assertj.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

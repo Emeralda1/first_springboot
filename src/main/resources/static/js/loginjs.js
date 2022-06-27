@@ -16,7 +16,7 @@ function logincheck(){
                     i++;
                 }
                 if(arr[0]=='true'){
-                    $("#loginform").submit();
+                    window.open("http://localhost:8080/home?page=1&cate=全部");
                 }
                 else alert("账号或密码错误")
             }

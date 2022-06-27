@@ -41,6 +41,7 @@
                 </div>
                 <div class="col-md-12" style="width: 350px;height: 35px;margin-bottom: 5px;padding: 5px;">
                     <span class="text">邮箱：</span>
+                    <span></span>
                 </div>
                 <div class="col-md-12" style="width: 300px;height: 30px; margin-bottom: 5px">
                     <input class="inputediv" type="text" name="email">

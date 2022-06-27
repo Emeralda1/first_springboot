@@ -14,7 +14,6 @@ import java.io.IOException;
 public class interceptor implements HandlerInterceptor {
     @Autowired
     user u;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session=request.getSession();
@@ -24,7 +23,7 @@ public class interceptor implements HandlerInterceptor {
             return true;
         }
         else {
-            response.sendRedirect("/index/login");
+            request.getRequestDispatcher("/index/login").forward(request,response);
             return false;
         }
     }

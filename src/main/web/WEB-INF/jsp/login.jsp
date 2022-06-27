@@ -19,7 +19,7 @@
 <div class="container-fluid">
     <div class="loginbox">
     <div class="row" style="width: 350px;height: 300px;">
-        <form id="loginform" method="post" action="/index">
+        <form id="loginform" method="post">
             <div class="col-md-12" style="width: 350px;height: 35px;margin-bottom: 5px;padding: 5px;">
                 <p class="text">用户名：</p>
             </div>

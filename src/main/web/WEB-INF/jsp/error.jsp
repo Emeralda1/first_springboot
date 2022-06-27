@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>服务器出现异常，点击返回首页</h1><a href="/index">返回首页</a>
+<h1>服务器出现异常，点击返回首页</h1><a href="/index/login">返回登录页</a>
 </body>
 </html>

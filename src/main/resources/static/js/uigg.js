@@ -703,6 +703,7 @@ $(function(){
         $('page ul').append('<a>' + i + '</a>');
     };
     function page(){
+        var cate=$('#cate').attr('name');
         pageVal = $('page').attr('value');
         pageMax = $('page').attr('max');
         $('page ul a').removeClass('active').hide();
@@ -712,6 +713,7 @@ $(function(){
             $('page ul a').eq(pageVal - 1).addClass('active').show().prev().show().prev().show().end().next().show().next().show().next().show();
         };
         $('page span').html(pageVal + '/' + pageMax);
+        window.open("http://localhost:8080/home?page="+pageVal+"&cate="+cate)
     };
     page();
     $('page .ico-alone-side-right').click(function(){

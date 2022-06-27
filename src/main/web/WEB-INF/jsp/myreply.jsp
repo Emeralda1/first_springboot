@@ -4,7 +4,7 @@
   Time: 12:37 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -19,28 +19,41 @@
     <script src="/static/js/admin.js"></script>
     <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
     <script>L2Dwidget.init({
-    "model": {
-        jsonPath: "https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json",
-        "scale": 1
-    },
-    "display": {
-        "position": "left",
-        "width": 100,
-        "height": 160,
-        "hOffset": 0,
-        "vOffset": -20
-    },
-    "mobile": {
-        "show": true,
-        "scale": 0.5
-    },
-    "react": {
-        "opacityDefault": 0.9,
-        "opacityOnHover": 0.2
-    }
-});</script>
+        "model": {
+            jsonPath: "https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json",
+            "scale": 1
+        },
+        "display": {
+            "position": "left",
+            "width": 100,
+            "height": 160,
+            "hOffset": 0,
+            "vOffset": -20
+        },
+        "react": {
+            "opacityDefault": 0.9,
+            "opacityOnHover": 0.2
+        }
+    });</script>
 </head>
 <body>
+<pop>
+    <pop-main>
+        <pop-title><h3>回复</h3><a class="close"></a></pop-title>
+        <pop-cont>
+            <form action="/setnewreply" method="post" id="reply">
+                <li><span>内容</span>
+                    <textarea class="big" required maxlength="100" name="content"></textarea>
+                    <cite></cite>
+                </li>
+            </form>
+        </pop-cont>
+        <pop-solve>
+            <button class="btn" onclick="$('#reply').submit()">提交</button>
+            <button class="btn" onclick="$('pop').hide()">取消</button>
+        </pop-solve>
+    </pop-main>
+</pop>
 <section class="admin anime-fade-in flex flex-column">
     <section class="head">
         <h1 class="logo float-left center anime-zoom-in"><i></i><span>lsc-<em>INDEX</em></span></h1>
@@ -76,7 +89,7 @@
                         <a href="/home?page=1&cate=娱乐">娱乐</a>
                     </div>
                 </li>
-                <li><a><i class="ico ico-app"></i>我的话题</a>
+                <li><a  class="active"><i class="ico ico-app" ></i>我的话题</a>
                     <div class="sider-group anime-fade-in">
                         <a href="/mytopic?cate=">我发表的</a>
                         <a href="/myreply">我回复的</a>
@@ -85,44 +98,37 @@
             </div>
             <h6>other</h6>
             <div class="sider-list">
-                <li><a href="/index/profile" class="active"><i class="ico ico-circular-user"></i>user</a></li>
+                <li><a href="/index/profile"><i class="ico ico-circular-user"></i>user</a></li>
             </div>
         </section>
         <section class="clause">
-            <div class="title"><h4>个人信息</h4></div>
+            <div class="title"><h4>我的话题</h4></div>
             <div class="contant">
+                <div class="title flex">
+                    <h5 class="float-left">我回复的</h5>
+                    <cite></cite><u></u>
+                </div>
                 <div class="item">
-                    <section class="form">
-                            <li><span>用户名</span>
-                                <span>${user.username}</span>
+                    <div class="list">
+                        <c:forEach items="${replylist}" var="reply">
+                            <li class="center">
+                                <div class="list-cont">
+                                    <a href="/topic?tid=${reply.tip}">
+                                        <h6>${reply.title}</h6>
+                                        <p>${reply.content}</p>
+                                        <div class="list-info">
+                                            <span class="float-right"><i class="ico ico-time"></i>${reply.date}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-control">
+                                    <a href="/deletereply?rid=${reply.rid}"><i class="ico ico-delete co-red"></i></a>
+                                </div>
                             </li>
-                            <li><span>邮箱</span>
-                                <span>${user.email}</span>
-                            </li>
-                            <li><span>昵称</span>
-                                <input class="med" type="text" name="showname" value="${user.showname}" required>
-                                <button class="btn code" id="editusername" type="button">确认修改</button>
-                            </li>
-                            <li><span>头像</span>
-                                <form enctype="multipart/form-data" action="/uploadphoto" method="post">
-                                <img src="${user.photopath}" class="float-left" style="margin-top:6px;margin-right:10px;width: 55px;height: 55px;border-radius: 40px">
-                                <input class="med" type="file" accept="image/*" name="file" id="uploadphoto">
-                                <button class="btn" type="submit" id="uploadconfirm" >上传</button>
-                                </form>
-                            </li>
-                            <li>
-                                <span>
-                                    等级
-                                </span>
-                                <span name="exp">${user.exp}</span>
-                                <span>距离下一级</span>
-                                <span name="gap"></span>
-                            </li>
-                            <li>
-                                <span>注册日期</span><span>${user.date}</span>
-                            </li>
-                    </section>
-            </div>
+
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
         </section>
     </section>
