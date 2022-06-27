@@ -9,9 +9,9 @@ import java.util.Date;
 @Data
 @Component("reply")
 public class Reply {
-    private String rid;
     private String tip;
     private String content;
     private String submitter;
     private Date rDate;
+    private String rid;
 }

@@ -27,7 +27,7 @@ $(document).ready(function (){
                 break;
             }
         }
-        $("span[name=gap]").text(eval(levellist[i]-$(this).text())+经验值)
+        $("span[name=gap]").text(eval(levellist[i]-$(this).text())+"经验值")
         $(this).text(level)
     })
 })

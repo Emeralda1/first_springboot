@@ -88,7 +88,7 @@ public class topic_create_m implements Topic_create {
     @Override
     public List<reply> getReplies(topic t) {
         QueryWrapper<Reply> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("tip","content","r_date","submitter").eq("tip",t.getTid()).orderByAsc("r_date");
+        queryWrapper.select("tip","content","r_date","submitter","rid").eq("tip",t.getTid()).orderByAsc("r_date");
         List<Reply> ls=replyMapper.selectList(queryWrapper);
         List<reply> fls=new ArrayList<>();
         if (ls.size()>0) {
@@ -116,7 +116,7 @@ public class topic_create_m implements Topic_create {
         user.setPhotopath(users.getPhotopath());
         p_reply=new reply();
         p_reply.setTip(r.getTip());p_reply.setContent(r.getContent());p_reply.setU(user);
-        p_reply.setDate(simpleDateFormat.format(r.getRDate()));
+        p_reply.setDate(simpleDateFormat.format(r.getRDate()));p_reply.setRid(r.getRid());
         return p_reply;
     }
 

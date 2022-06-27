@@ -123,9 +123,6 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="list-control">
-                                    <a href="/deletetopic?tid=${topic.tid}"><i class="ico ico-delete co-red"></i></a>
-                                </div>
                             </li>
 
                         </c:forEach>

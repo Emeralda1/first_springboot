@@ -177,6 +177,7 @@ public class index {
         user=(user)session.getAttribute("user");
         List<reply> ls=tc.myreply(user.getUsername());
         model.addAttribute("replylist",ls);
+        System.out.println(ls);
         return "myreply";
     }
     @RequestMapping("/search")
