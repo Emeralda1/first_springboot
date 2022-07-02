@@ -7,5 +7,6 @@ import org.springframework.stereotype.Component;
 @Component("user")
 @Data
 public class user extends Users {
-private String date;
+    //实体用户类的子类
+private String date;//格式化后的日期
 }

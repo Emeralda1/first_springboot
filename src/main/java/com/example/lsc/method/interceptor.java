@@ -16,6 +16,7 @@ public class interceptor implements HandlerInterceptor {
     user u;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //判断用户是否已经登录，否则按照配置的规则去拦截
         HttpSession session=request.getSession();
         u=(user)session.getAttribute("user");
         System.out.println(u);

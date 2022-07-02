@@ -49,6 +49,9 @@ function signupcheck(){
     }
 }
 $(document).ready(function (){
+
+
+
     $("input[name=repassword]").focus(function (){
         $(this).css('border-color','');
         $(this).parent().prev().find("span").eq(1).remove();

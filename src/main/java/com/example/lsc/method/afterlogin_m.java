@@ -15,12 +15,12 @@ import java.util.Map;
 
 @Service("afterlogin")
 public class afterlogin_m implements afterlogin{
-    @Autowired
-    private Users users;
+    //自动连接User实体类的数据库操作接口类
     @Autowired
     private UsersMapper usersMapper;
     @Override
     public void editshowname(user u) {
+        //更新条件构造器
         UpdateWrapper<Users> usersUpdateWrapper=new UpdateWrapper<>();
         usersUpdateWrapper.eq("USERNAME",u.getUsername()).set("SHOWNAME",u.getShowname());
         usersMapper.update(null,usersUpdateWrapper);
@@ -28,22 +28,22 @@ public class afterlogin_m implements afterlogin{
     @Override
     public Map<String, Object> fileUpload(MultipartFile file, String tempPath) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        if (null == file) {
+        if (null == file) {                           //如果传入文件值为空
             resultMap.put("result", false);
             resultMap.put("msg", "获取上传文件失败");
-        } else if (file.isEmpty()) {
+        } else if (file.isEmpty()) {                    //如果传入文件对象为空
             resultMap.put("result", false);
             resultMap.put("msg", "没有选择文件");
         } else {
-            File fileDir = new File(tempPath);
+            File fileDir = new File(tempPath); //设定传入的目录，没有则创建
             if (!fileDir.exists()) {
                 fileDir.mkdirs();
             }
-            String filename = file.getOriginalFilename();
-            filename = tempPath +"\\"+ filename;
-            File dest = new File(filename);
+            String filename = file.getOriginalFilename();//获取传入文件名称
+            filename = tempPath +"\\"+ filename;//设定传入文件名称并带上完整路径
+            File dest = new File(filename);//设定最终存入文件路径
             try {
-                file.transferTo(dest);
+                file.transferTo(dest);//将文件传到最终路径中
                 resultMap.put("result", "true");
                 resultMap.put("msg", "上传成功");
                 resultMap.put("filePath", filename);
@@ -60,6 +60,7 @@ public class afterlogin_m implements afterlogin{
 
     @Override
     public void editphoto(user u) {
+        //更新条件构造器，根据传入user对象的相关属性值更改头像文件的路径
         UpdateWrapper<Users> usersUpdateWrapper=new UpdateWrapper<>();
         usersUpdateWrapper.eq("USERNAME",u.getUsername()).set("PHOTOPATH",u.getPhotopath());
         System.out.println(u.getUsername()+u.getPhotopath());

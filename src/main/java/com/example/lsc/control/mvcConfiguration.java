@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class mvcConfiguration implements WebMvcConfigurer {
+    //配置类bean 注册拦截器并设定需要拦截的url以及需要排除的url
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         interceptor interceptor=new interceptor();

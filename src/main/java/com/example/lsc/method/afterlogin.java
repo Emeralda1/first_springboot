@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Repository
 public interface afterlogin {
-    public void editshowname(user u);
-    public Map<String, Object> fileUpload(MultipartFile file, String tempPath);
-    public void editphoto(user u);
+    public void editshowname(user u);//编辑昵称
+    public Map<String, Object> fileUpload(MultipartFile file, String tempPath);//头像文件上传
+    public void editphoto(user u);//更改头像文件的路径
 }

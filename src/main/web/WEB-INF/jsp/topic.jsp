@@ -143,7 +143,7 @@
             <form action="/setnewreply" method="post" id="reply">
                 <li><span>内容</span>
                     <input name="tid" value="${topic.tid}" hidden>
-                    <textarea class="big" required maxlength="100" name="content"></textarea>
+                    <textarea class="big" required maxlength="1000" name="content"></textarea>
                     <cite></cite>
                 </li>
             </form>
