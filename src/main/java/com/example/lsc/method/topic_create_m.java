@@ -127,7 +127,7 @@ public class topic_create_m implements Topic_create {
         user.setUsername(users.getUsername());user.setShowname(users.getShowname());user.setExp((users.getExp()));
         user.setPhotopath(users.getPhotopath());
         p_reply=new reply();
-        //格式化日期
+        //格式化日期,并设定发表此回复的用户
         p_reply.setTip(r.getTip());p_reply.setContent(r.getContent());p_reply.setU(user);
         p_reply.setDate(simpleDateFormat.format(r.getRDate()));p_reply.setRid(r.getRid());
         return p_reply;
@@ -140,6 +140,7 @@ public class topic_create_m implements Topic_create {
         //遍历分页对象中所有记录，将其初始化后再装填此话题的所有回复
         for(int i=0;i<iPage.getRecords().size();i++){
             p_topic=inittopic(iPage.getRecords().get(i));
+            //每次都生成新对象，不然传入到列表中的对象都会被最后一个所覆盖，导致列表中对象属性值全部一样
             topic t=new topic();
             t.setTid(p_topic.getTid());t.setContent(p_topic.getContent());t.setDate(p_topic.getDate());
             t.setReplies(p_topic.getReplies());t.setCate(p_topic.getCate());t.setU(p_topic.getU());
@@ -156,6 +157,7 @@ public class topic_create_m implements Topic_create {
         queryWrapper.select("tid", "title", "content", "t_date", "submitter", "cate").eq("tid",tid);
         e_topic=new Topic();
         e_topic=topicMapper.selectOne(queryWrapper);
+        //将实体类转化为pojo类
         p_topic=new topic();
         p_topic=inittopic(e_topic);
         p_topic.setReplies(getReplies(p_topic));
@@ -181,6 +183,7 @@ public class topic_create_m implements Topic_create {
         if (ls.size()>0){
             //遍历初始的数据库记录列表，将其转化为pojo类再返回到前端
             for (Topic t:ls){
+                //每次都生成新对象，不然传入到列表中的对象都会被最后一个所覆盖，导致列表中对象属性值全部一样
                 topic to=new topic();
                 p_topic=inittopic(t);
                 to.setTid(p_topic.getTid());to.setContent(p_topic.getContent());to.setCate(p_topic.getCate());
@@ -201,6 +204,7 @@ public class topic_create_m implements Topic_create {
         if(ls.size()>0){
             //遍历初始的数据库记录列表，将其转化为pojo类再返回到前端
             for (Reply r:ls){
+                //每次都生成新对象，不然传入到列表中的对象都会被最后一个所覆盖，导致列表中对象属性值全部一样
                 reply re=new reply();
                 p_reply=initreply(r);
                 re.setTip(p_reply.getTip());re.setContent(p_reply.getContent());re.setDate(p_reply.getDate());
@@ -249,6 +253,7 @@ public class topic_create_m implements Topic_create {
         if (ls.size()>0){
             //遍历初始的数据库记录列表，将其转化为pojo类再返回到前端
             for (Topic t:ls){
+                //每次都生成新对象，不然传入到列表中的对象都会被最后一个所覆盖，导致列表中对象属性值全部一样
                 topic to=new topic();
                 p_topic=inittopic(t);
                 to.setTid(p_topic.getTid());to.setContent(p_topic.getContent());to.setCate(p_topic.getCate());

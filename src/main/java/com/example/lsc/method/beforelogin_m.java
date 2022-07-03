@@ -40,9 +40,6 @@ public class beforelogin_m implements beforelogin{
     }
     public msg logincheck(user u) {
         //通过传入的user对象的账号密码属性去数据库比对
-        user=new user();
-        users=u;
-        System.out.println(u.getPassword());
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("USERNAME").eq("USERNAME",u.getUsername()).eq("PASSWORD",u.getPassword());
         long count=usersMapper.selectCount(queryWrapper);
@@ -57,6 +54,7 @@ public class beforelogin_m implements beforelogin{
         //先通过传入user对象的账号和邮箱去与数据库比对看是否重复
         user=new user();
         users=u;
+        //看用户名是否重复
         QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("username").eq("username",u.getUsername());
         long count=usersMapper.selectCount(queryWrapper);
@@ -64,6 +62,7 @@ public class beforelogin_m implements beforelogin{
             m.setInfo1("false");
         }
         else m.setInfo1("true");
+        //看邮箱是否重复
         queryWrapper = new QueryWrapper<>();
         queryWrapper.select("username").eq("email",u.getEmail());
         count=usersMapper.selectCount(queryWrapper);
